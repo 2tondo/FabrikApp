@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Transactions list</title>
+</head>
+<body>
+    <div th:replace="customTemplate/header :: header">i shouldn't see this</div>
+
+    <table>
+        <tr th:each="element : ${outputList}">
+            <!--<td th:text="${element.key}">keyvalue</td>-->
+            <table>
+                <tr th:each="instance : ${element.value}">
+                    <td th:text=\"${instance.transactionId}\">transactionId</td>
+                    <td th:text=\"${instance.operationId}\">operationId</td>
+                    <td th:text=\"${instance.amount}\">amount</td>
+                    <td th:text=\"${instance.currency}\">currency</td>
+                    <td th:text=\"${instance.description}\">description</td>
+                </tr>
+            </table>
+        </tr>
+    </table>
+</body>
+</html>

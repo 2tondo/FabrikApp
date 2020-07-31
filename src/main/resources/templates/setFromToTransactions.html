@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script>
+
+        function getStart() {
+            if(document.getElementById('start').value === ''){
+                alert("Set the start");
+                document.getElementById('start').style.borderColor = 'red';
+                return false;
+            }
+            return document.getElementById('start').value;
+        }
+
+        function getFinish() {
+            if(document.getElementById('finish').value === ''){
+                alert("Set the finish");
+                document.getElementById('finish').style.borderColor = 'red';
+                return false;
+            }
+            return document.getElementById('finish').value;
+        }
+
+        function getTransactionsValues() {
+
+            let start = getStart();
+            let finish = getFinish();
+
+            if(start === false || finish === false){
+            }else { window.location.replace("./getTransactions?uID=" + [[${uID}]] + "&fromAccountingDate=" + start + "&toAccountingDate=" + finish); }
+        }
+
+    </script>
+
+</head>
+<body>
+<div th:replace="customTemplate/header :: header">i shouldn't see this</div>
+<br>
+<br>
+<br>
+
+<input type="date" id="start" name="start"
+       value="2020-08-01"
+       min="2010-01-01" max="2020-12-31">
+
+<input type="date" id="finish" name="finish"
+       value="2020-08-01"
+       min="2010-01-01" max="2020-12-31">
+
+
+<button onclick="getTransactionsValues()">show transactions</button>
+</body>
+</html>

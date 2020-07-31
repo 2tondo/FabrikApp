@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome</title>
+
+    <script>
+        function getUID() {
+            if(document.getElementById('UIDInput').value === ''){
+                alert("Set the user id");
+                document.getElementById('UIDInput').style.borderColor = 'red';
+                return false;
+            }
+            return document.getElementById('UIDInput').value;
+        }
+
+        function getBalance() {
+            let UID = getUID();
+            if( UID === false){
+            }else {window.location.replace('./balance/showBalance?UID=' + UID)}
+        }
+
+        function doTransaction() {
+            let UID = getUID();
+            if( UID === false){
+            } else {window.location.replace('./transaction/doTransaction?UID=' + UID)}
+        }
+
+        function getTransactions() {
+            let UID = getUID();
+            if( UID === false){
+            } else {window.location.replace('./transaction/setFromToTransactions?UID=' + UID)}
+        }
+    </script>
+
+    <style>
+        .dropbtn {
+            background-color: #00a9e0;
+            color: white;
+            padding: 16px;
+            font-size: 16px;
+            border: none;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f1f1f1;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {background-color: #00a9e0;}
+
+        .dropdown:hover .dropdown-content {display: block;}
+
+        .dropdown:hover .dropbtn {background-color: #00a9e0;}
+    </style>
+</head>
+<body>
+
+    <div th:replace="customTemplate/header :: header">i shouldn't see this</div>
+    <br>
+    <br>
+    <br>
+
+    <label for="UIDInput">User ID:</label>
+    <input type="text" id="UIDInput" name="UIDInput">
+
+    <div class="dropdown">
+        <button class="dropbtn">Hover to choose what to do</button>
+        <div class="dropdown-content">
+            <a href="javascript:getBalance()" onclick="getBalance()">Balance</a>
+            <a href="javascript:doTransaction()" onclick="doTransaction()">Transaction</a>
+            <a href="javascript:getTransactions()" onclick="getTransactions()">Transactions list</a>
+        </div>
+    </div>
+
+</body>
+</html>
